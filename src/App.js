@@ -17,15 +17,13 @@ const todoList = [
 
 function App() {
   return (
-    <div style={{ textAlign: "center" }}>
-      <header>
-        <h1>Todo List</h1>
-        <ul>
-          {todoList.map(function (item) {
-            return <li key={item.id}>{item.title}</li>;
-          })}
-        </ul>
-      </header>
+    <div>
+      <h1>Todo List</h1>
+      <ul>
+        {todoList.map(function (item) {
+          return <li key={item.id}>{item.title}</li>;
+        })}
+      </ul>
     </div>
   );
 }
