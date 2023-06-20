@@ -20,8 +20,8 @@ export default function TodoList() {
   return (
     <div>
       <ul>
-        {todoList.map(function (todo) {
-          return <TodoListItem key={todoList.id} todo={todoList} />;
+        {todoList.map(function (item) {
+          return <TodoListItem key={todoList.id} todo={item.title} />;
         })}
       </ul>
     </div>
