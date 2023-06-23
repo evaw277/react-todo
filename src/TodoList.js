@@ -21,7 +21,7 @@ export default function TodoList() {
     <div>
       <ul>
         {todoList.map(function (item) {
-          return <TodoListItem key={todoList.id} todo={item.title} />;
+          return <TodoListItem key={item.id} todo={item.title} />;
         })}
       </ul>
     </div>

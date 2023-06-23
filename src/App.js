@@ -3,7 +3,7 @@ import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 
 function App() {
-  const [newTodo, setNewTodo] = React.useState(" ");
+  const [newTodo, setNewTodo] = React.useState("");
 
   function onAddTodo(event) {
     setNewTodo(event.target.title.value);
