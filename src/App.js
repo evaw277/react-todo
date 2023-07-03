@@ -13,9 +13,9 @@ function App() {
   return (
     <div>
       <h1>Todo List</h1>
-      <AddTodoForm onAdd={onAddTodo} />
+      <AddTodoForm onAddTodo={onAddTodo} />
       <p>{newTodo}</p>
-      <TodoList todoList={todoList} />
+      <TodoList todoList={[todoList]} />
     </div>
   );
 }
