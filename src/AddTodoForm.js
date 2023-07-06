@@ -1,8 +1,7 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function AddTodoForm({ onAddTodo }) {
-  const [todoTitle, setTodoTitle] = React.useState("");
+  const [todoTitle, setTodoTitle] = useState("");
 
   function handleTitleChange(event) {
     const newTodoTitle = event.target.value;
