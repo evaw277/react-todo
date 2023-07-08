@@ -1,9 +1,7 @@
 import React from "react";
 import TodoListItem from "./TodoListItem";
 
-export default function TodoList(props) {
-  const todoList = [props];
-
+export default function TodoList({ todoList }) {
   return (
     <div>
       <ul>
