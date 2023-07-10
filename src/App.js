@@ -4,10 +4,11 @@ import AddTodoForm from "./AddTodoForm";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
+  // const stringed = JSON.stringify(todoList);
 
-  useEffect((todoList) => {
-    localStorage.setItem("savedTodoList", todoList);
-  }, []);
+  useEffect(() => {
+    localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+  }, [todoList]);
 
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
