@@ -6,6 +6,7 @@ export default function InputWithLabel(props) {
   useEffect(() => {
     inputRef.current.focus();
   });
+
   return (
     <>
       <label htmlFor="todoTitle">{props.children}</label>
