@@ -3,7 +3,7 @@ import React from "react";
 export default function TodoListItem({ todo, removeTodo }) {
   return (
     <li>
-      {todo} <button onClick={() => removeTodo(todo)}>Remove</button>
+      {todo.title} <button onClick={() => removeTodo(todo.id)}>Remove</button>
     </li>
   );
 }

@@ -22,9 +22,7 @@ function App() {
   };
 
   const removeTodo = (id) => {
-    const removeItem = todoList.filter(
-      (todoList) => todoList.id !== todoList.id
-    );
+    const removeItem = todoList.filter((todo) => todo.id !== id);
 
     setTodoList(removeItem);
   };
