@@ -18,27 +18,32 @@ function App() {
   // const [todoList, setTodoList] = useSemiPersistentState("savedTodoList");
 
   const [todoList, setTodoList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log("check run");
+    console.log("check 1");
     new Promise((resolve, reject) => {
-      setTimeout(
-        () =>
-          resolve({
+      setTimeout(() => {
+        resolve(
+          {
             data: {
               todoList: JSON.parse(localStorage.getItem("savedTodoList")),
             },
-          }),
-        2000
-      );
+          },
+          2000
+        );
+      });
+    }).then((result) => {
+      console.log(result);
+      setTodoList(result.data.todoList);
+      setIsLoading(false);
     });
   });
 
-  // .then(result) =>
-  //          setTodoList(result.data.todoList)
-  //
   useEffect(() => {
-    localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+    if (isLoading === false) {
+      localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+    }
   }, [todoList]);
 
   function addTodo(newTodo) {
