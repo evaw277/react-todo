@@ -27,9 +27,9 @@ function App() {
     }
   }, [todoList]);
 
-  function addTodo(newTodo) {
+  const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
-  }
+  };
   const removeTodo = (id) => {
     const removeItem = todoList.filter((todo) => todo.id !== id);
 
