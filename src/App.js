@@ -54,7 +54,7 @@ function App() {
     try {
       const airtableData = {
         fields: {
-          title: todo.title,
+          title: newTodo.title,
         },
       };
       const options = {
