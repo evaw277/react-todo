@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -49,8 +50,43 @@ function App() {
     }
   }, [todoList]);
 
-  const addTodo = (newTodo) => {
-    setTodoList([...todoList, newTodo]);
+  const addTodo = async (newTodo) => {
+    try {
+      const airtableData = {
+        fields: {
+          title: newTodo.title,
+        },
+      };
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+        },
+        body: JSON.stringify(airtableData),
+      };
+      const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME} `;
+
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        const message = `Error: ${response.status}`;
+        throw new Error(message);
+      }
+      const jsonResponse = await response.json();
+      // to do: set state with new todo
+      // setTodoList();
+
+      // ** this is the part of 1.8 POST that bugs, so I'm commenting it out for now so I can move on with the assignments.
+
+      // const newTitle = jsonResponse.fields.title;
+      // console.log(newTitle);
+      // setTodoList(newTitle);
+      return jsonResponse;
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
   };
   const removeTodo = (id) => {
     const removeItem = todoList.filter((todo) => todo.id !== id);
@@ -59,15 +95,25 @@ function App() {
   };
 
   return (
-    <>
-      <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={addTodo} />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <TodoList todoList={todoList} removeTodo={removeTodo} />
-      )}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <h1>Todo List</h1>
+              <AddTodoForm onAddTodo={addTodo} />
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                <TodoList todoList={todoList} removeTodo={removeTodo} />
+              )}
+            </div>
+          }
+        />
+        <Route path="/new" element={<h1>New Todo List</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
