@@ -75,6 +75,13 @@ function App() {
       }
       const jsonResponse = await response.json();
       // to do: set state with new todo
+      // setTodoList();
+
+      // ** this is the part of 1.8 POST that bugs, so I'm commenting it out for now so I can move on with the assignments.
+
+      // const newTitle = jsonResponse.fields.title;
+      // console.log(newTitle);
+      // setTodoList(newTitle);
       return jsonResponse;
     } catch (error) {
       console.log(error.message);
