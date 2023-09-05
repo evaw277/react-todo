@@ -1,15 +1,104 @@
-.Container {
-  background-color: palegreen;
+:root {
+  --background-color: #cde9ff;
+  --secondary-color: #e4f3ff;
+  --main-font: "Courier New", Courier, monospace;
+  --main-font-color: #00335ad3;
+  --transition: ease-in-out 125ms;
+  --border-radius: 4px;
 }
 
-.ListItem {
-  color: blue;
+.Container {
+  padding: 20px;
+  text-align: center;
 }
 
 .MainHeader {
-  color: pink;
+  color: var(--main-font-color);
+  font-size: 40px;
 }
 
 .Loading {
-  color: paleturquoise;
+  color: var(--main-font-color);
+  font-family: var(--main-font);
+}
+
+.FormInputField {
+  padding: 12px;
+  margin: 8px;
+  font-size: large;
+  background: var(--secondary-color);
+  border-radius: var(--border-radius);
+  font-family: var(--main-font);
+  border: 1px solid var(--background-color);
+  color: var(--main-font-color);
+}
+
+.ListItem {
+  padding: 10px;
+}
+
+.RemoveButton {
+  font-family: var(--main-font);
+  background-color: var(--secondary-color);
+  border: 1px solid black;
+  border-color: var(--background-color);
+  padding: 15px;
+  border-radius: var(--border-radius);
+  color: var(--main-font-color);
+}
+
+.RemoveButton:hover {
+  cursor: pointer;
+  background-color: grey;
+  color: var(--background-color);
+  transition: var(--transition);
+}
+
+.AddTodoFormButton {
+  font-family: var(--main-font);
+  background-color: var(--secondary-color);
+  border: 1px solid black;
+  border-color: var(--background-color);
+  padding: 15px;
+  border-radius: var(--border-radius);
+  color: var(--main-font-color);
+}
+
+.AddTodoFormButton:hover {
+  cursor: pointer;
+  background-color: grey;
+  color: var(--background-color);
+  transition: var(--transition);
+}
+
+body {
+  background-color: #cde9ff;
+  font-family: var(--main-font);
+  color: var(--main-font-color);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  color: var(--main-font-color);
+}
+
+form {
+  font-size: 20px;
+}
+
+@media (max-width: 976px) {
+  .FormInputField {
+    padding: 12px 0px;
+  }
+  .MainHeader {
+    font-size: 30px;
+  }
+  .AddTodoFormButton {
+    padding: 10px;
+  }
+  form {
+    font-size: 16px;
+    display: inline;
+  }
 }

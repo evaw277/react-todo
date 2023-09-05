@@ -3,7 +3,9 @@ import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styles from "./TodoListItem.module.css";
+// import { FontAwesomeIcon } from "@fortawesome/react-font-awesome";
 
+// const icon = <FontAwesomeIcon icon={faSquareCheck} />;
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -103,6 +105,7 @@ function App() {
           element={
             <div className={styles.Container}>
               <h1 className={styles.MainHeader}>Todo List</h1>
+
               <AddTodoForm onAddTodo={addTodo} />
               {isLoading ? (
                 <p className={styles.Loading}>Loading...</p>
