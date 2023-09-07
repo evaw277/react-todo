@@ -81,14 +81,15 @@ function App() {
       // setTodoList();
 
       // ** this is the part of 1.8 POST that bugs, so I'm commenting it out for now so I can move on with the assignments.
+      const airtableTodo = {
+        title: jsonResponse.fields.title,
+        id: jsonResponse.id,
+      };
 
-      // const newTitle = jsonResponse.fields.title;
-      // // console.log(newTitle);
-      // setTodoList([newTitle]);
-      return jsonResponse;
+      console.log(airtableTodo);
+      setTodoList([...todoList, airtableTodo]);
     } catch (error) {
       console.log(error.message);
-      return null;
     }
   };
   const removeTodo = (id) => {
