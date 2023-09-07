@@ -47,12 +47,6 @@ function App() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (!isLoading) {
-      localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-    }
-  }, [todoList]);
-
   const addTodo = async (newTodo) => {
     try {
       const airtableData = {
@@ -77,10 +71,7 @@ function App() {
         throw new Error(message);
       }
       const jsonResponse = await response.json();
-      // to do: set state with new todo
-      // setTodoList();
 
-      // ** this is the part of 1.8 POST that bugs, so I'm commenting it out for now so I can move on with the assignments.
       const airtableTodo = {
         title: jsonResponse.fields.title,
         id: jsonResponse.id,
