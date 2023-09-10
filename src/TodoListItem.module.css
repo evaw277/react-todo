@@ -5,13 +5,15 @@
   --main-font-color: #00335ad3;
   --transition: ease-in-out 125ms;
   --border-radius: 4px;
+  --box-shadow: 0px 1px 1px;
 }
 
 .Container {
   padding: 20px;
   text-align: center;
+  max-width: 900px;
+  margin: 20px auto;
 }
-
 .MainHeader {
   color: var(--main-font-color);
   font-size: 40px;
@@ -24,17 +26,14 @@
 
 .FormInputField {
   padding: 12px;
-  margin: 8px;
+  margin: 8px 8px 18px;
   font-size: large;
   background: var(--secondary-color);
   border-radius: var(--border-radius);
   font-family: var(--main-font);
   border: 1px solid var(--background-color);
   color: var(--main-font-color);
-}
-
-.ListItem {
-  padding: 10px;
+  box-shadow: var(--box-shadow);
 }
 
 .RemoveButton {
@@ -45,6 +44,10 @@
   padding: 15px;
   border-radius: var(--border-radius);
   color: var(--main-font-color);
+  box-shadow: var(--box-shadow);
+}
+.ListItem {
+  padding: 10px;
 }
 
 .RemoveButton:hover {
@@ -62,6 +65,7 @@
   padding: 15px;
   border-radius: var(--border-radius);
   color: var(--main-font-color);
+  box-shadow: var(--box-shadow);
 }
 
 .AddTodoFormButton:hover {
@@ -78,9 +82,14 @@ body {
 }
 
 ul {
+  width: 420px;
   list-style: none;
+  margin: auto;
   padding: 0;
   color: var(--main-font-color);
+  display: flex;
+  flex-direction: column;
+  text-align: left !important ;
 }
 
 form {
