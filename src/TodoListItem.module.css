@@ -16,7 +16,7 @@
 }
 .MainHeader {
   color: var(--main-font-color);
-  font-size: 40px;
+  font-size: 44px;
 }
 
 .Loading {
@@ -36,43 +36,26 @@
   box-shadow: var(--box-shadow);
 }
 
-.RemoveButton {
-  font-family: var(--main-font);
+button {
   background-color: var(--secondary-color);
+  font-family: var(--main-font);
   border: 1px solid black;
   border-color: var(--background-color);
-  padding: 15px;
   border-radius: var(--border-radius);
   color: var(--main-font-color);
   box-shadow: var(--box-shadow);
+  padding: 15px;
 }
+
+button:hover {
+  cursor: pointer;
+  background-color: grey;
+  color: var(--background-color);
+  transition: var(--transition);
+}
+
 .ListItem {
   padding: 10px;
-}
-
-.RemoveButton:hover {
-  cursor: pointer;
-  background-color: grey;
-  color: var(--background-color);
-  transition: var(--transition);
-}
-
-.AddTodoFormButton {
-  font-family: var(--main-font);
-  background-color: var(--secondary-color);
-  border: 1px solid black;
-  border-color: var(--background-color);
-  padding: 15px;
-  border-radius: var(--border-radius);
-  color: var(--main-font-color);
-  box-shadow: var(--box-shadow);
-}
-
-.AddTodoFormButton:hover {
-  cursor: pointer;
-  background-color: grey;
-  color: var(--background-color);
-  transition: var(--transition);
 }
 
 body {
@@ -101,7 +84,7 @@ form {
     padding: 12px 0px;
   }
   .MainHeader {
-    font-size: 30px;
+    font-size: 35px;
   }
   .AddTodoFormButton {
     padding: 10px;
