@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./TodoListItem.module.css";
+import styles from "../TodoListItem.module.css";
 
 export default function TodoListItem({ todo, removeTodo }) {
   return (
