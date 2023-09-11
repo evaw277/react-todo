@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import styles from "../TodoListItem.module.css";
+import PropTypes from "prop-types";
 
 export default function TodoContainer() {
   const [todoList, setTodoList] = useState([]);
@@ -99,3 +100,7 @@ export default function TodoContainer() {
     </div>
   );
 }
+
+TodoContainer.propTypes = {
+  props: PropTypes.func,
+};
