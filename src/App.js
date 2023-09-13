@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styles from "./TodoListItem.module.css";
+// import { FontAwesomeIcon } from "@fortawesome/react-font-awesome";
 
+// const icon = <FontAwesomeIcon icon={faSquareCheck} />;
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,12 +47,6 @@ function App() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (!isLoading) {
-      localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-    }
-  }, [todoList]);
-
   const addTodo = async (newTodo) => {
     try {
       const airtableData = {
@@ -74,18 +71,16 @@ function App() {
         throw new Error(message);
       }
       const jsonResponse = await response.json();
-      // to do: set state with new todo
-      // setTodoList();
 
-      // ** this is the part of 1.8 POST that bugs, so I'm commenting it out for now so I can move on with the assignments.
+      const airtableTodo = {
+        title: jsonResponse.fields.title,
+        id: jsonResponse.id,
+      };
 
-      // const newTitle = jsonResponse.fields.title;
-      // console.log(newTitle);
-      // setTodoList(newTitle);
-      return jsonResponse;
+      console.log(airtableTodo);
+      setTodoList([...todoList, airtableTodo]);
     } catch (error) {
       console.log(error.message);
-      return null;
     }
   };
   const removeTodo = (id) => {
@@ -100,11 +95,12 @@ function App() {
         <Route
           path="/"
           element={
-            <div>
-              <h1>Todo List</h1>
+            <div className={styles.Container}>
+              <h1 className={styles.MainHeader}>Todo List</h1>
+
               <AddTodoForm onAddTodo={addTodo} />
               {isLoading ? (
-                <p>Loading...</p>
+                <p className={styles.Loading}>Loading...</p>
               ) : (
                 <TodoList todoList={todoList} removeTodo={removeTodo} />
               )}
