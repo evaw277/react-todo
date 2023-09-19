@@ -15,7 +15,17 @@ export default function TodoContainer() {
         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
       },
     };
-    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?view=Grid%20view `;
+
+    const sortField = "sort[0][field]";
+    const sortDirection = "sort[0][direction]";
+
+    const encodedSortField = encodeURIComponent(sortField);
+    const encodedSortDirection = encodeURIComponent(sortDirection);
+
+    console.log(encodedSortField === "sort%5B0%5D%5Bfield%5D%3DTitle");
+    console.log(encodedSortDirection === "sort%5B0%5D%5Bdirection%5D%3Dasc");
+
+    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?${encodedSortField}=Title&${encodedSortDirection}=asc`;
 
     try {
       const response = await fetch(url, options);
@@ -28,7 +38,7 @@ export default function TodoContainer() {
 
       const todos = data.records.map((data) => {
         const newTodo = {
-          title: data.fields.title,
+          title: data.fields.Title,
           id: data.id,
         };
         return newTodo;
