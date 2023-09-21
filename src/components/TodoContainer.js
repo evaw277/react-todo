@@ -3,10 +3,14 @@ import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import styles from "../TodoListItem.module.css";
 import PropTypes from "prop-types";
+import { sort } from "semver";
 
 export default function TodoContainer() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSortedAscending, setIsSortAscending] = useState(true);
+  const [sortOrder, setSortOrder] = useState("ASC");
+  const [sortedItems, setSortedItems] = useState([]);
 
   const fetchData = async () => {
     const options = {
@@ -22,13 +26,10 @@ export default function TodoContainer() {
     const encodedSortField = encodeURIComponent(sortField);
     const encodedSortDirection = encodeURIComponent(sortDirection);
 
-    console.log(encodedSortField === "sort%5B0%5D%5Bfield%5D%3DTitle");
-    console.log(encodedSortDirection === "sort%5B0%5D%5Bdirection%5D%3Dasc");
-
     const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?${encodedSortField}=Title&${encodedSortDirection}=asc`;
-
+    const url2 = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(url2, options);
 
       if (!response.ok) {
         const message = `Error: ${response.status}`;
@@ -41,6 +42,7 @@ export default function TodoContainer() {
           title: data.fields.Title,
           id: data.id,
         };
+
         return newTodo;
       });
 
@@ -97,10 +99,45 @@ export default function TodoContainer() {
     setTodoList(removeItem);
   };
 
+  function renderSortedTodos() {
+    // const filteredProducts = fetchedProducts.filter((item, index) => {
+    //   return true;
+    // });
+
+    const sortedTodos = data.records.sort((objectA, objectB) => {
+      if (sortOrder === "TITLE_ASC") {
+      } else if (sortOrder === "TITLE_DESC") {
+      }
+
+      if (isSortedAscending) {
+        return objectA.title.localeCompare(objectB.title);
+      } else return objectB.title.localeCompare(objectA.title);
+    });
+
+    // return sortedProducts.map((product) => {
+    //   return (
+    //     <div key={product.id}>
+    //       <h2>
+    //         {product.title} - {product.stock} in stock
+    //       </h2>
+    //       <h4>{product.category}</h4>
+    //       <p>{product.description}</p>
+    //     </div>
+    //   );
+    // });
+  }
+
+  const handleToggleSortDirection = () => {
+    setIsSortAscending(!isSortedAscending);
+    // setSortOrder("DATE_DESC");
+  };
+
   return (
     <div className={styles.Container}>
       <h1 className={styles.MainHeader}>Todo List</h1>
-
+      <button onClick={handleToggleSortDirection}>
+        {isSortedAscending ? "sort descending" : "sort ascending"}
+      </button>
       <AddTodoForm onAddTodo={addTodo} />
       {isLoading ? (
         <p className={styles.Loading}>Loading...</p>
