@@ -27,7 +27,7 @@ export default function AddTodoForm({ onAddTodo }) {
       >
         Title:
       </InputWithLabel>
-      <button className={styles.AddTodoFormButton}>Add</button>
+      <button>Add</button>
     </form>
   );
 }

@@ -5,13 +5,7 @@ import PropTypes from "prop-types";
 export default function TodoListItem({ todo, removeTodo }) {
   return (
     <li className={styles.ListItem}>
-      <button
-        className={styles.RemoveButton}
-        onClick={() => removeTodo(todo.id)}
-      >
-        Remove
-      </button>{" "}
-      {todo.title}
+      <button onClick={() => removeTodo(todo.id)}>Remove</button> {todo.title}
     </li>
   );
 }

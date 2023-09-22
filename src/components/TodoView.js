@@ -16,8 +16,8 @@ export default function TodoView({
       <h1 className={styles.MainHeader}>Todo List</h1>
 
       <AddTodoForm onAddTodo={onAddTodo} />
-      <button onClick={handleToggleSortDirection}>
-        {isSortedAscending ? "sort descending" : "sort ascending"}
+      <button className={styles.SortButton} onClick={handleToggleSortDirection}>
+        {isSortedAscending ? "Sort Descending" : "Sort Ascending"}
       </button>
       {isLoading ? (
         <p className={styles.Loading}>Loading...</p>
