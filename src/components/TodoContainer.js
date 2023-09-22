@@ -9,7 +9,6 @@ export default function TodoContainer() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSortedAscending, setIsSortAscending] = useState(true);
-  const [sortOrder, setSortOrder] = useState("ASC");
   const [sortedItems, setSortedItems] = useState([]);
 
   const fetchData = async () => {
@@ -26,10 +25,10 @@ export default function TodoContainer() {
     const encodedSortField = encodeURIComponent(sortField);
     const encodedSortDirection = encodeURIComponent(sortDirection);
 
-    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?${encodedSortField}=Title&${encodedSortDirection}=asc`;
-    const url2 = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+    // const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?${encodedSortField}=title&${encodedSortDirection}=asc`;
+    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
     try {
-      const response = await fetch(url2, options);
+      const response = await fetch(url, options);
 
       if (!response.ok) {
         const message = `Error: ${response.status}`;
@@ -39,7 +38,7 @@ export default function TodoContainer() {
 
       const todos = data.records.map((data) => {
         const newTodo = {
-          title: data.fields.Title,
+          title: data.fields.title,
           id: data.id,
         };
 
@@ -87,7 +86,6 @@ export default function TodoContainer() {
         id: jsonResponse.id,
       };
 
-      console.log(airtableTodo);
       setTodoList([...todoList, airtableTodo]);
     } catch (error) {
       console.log(error.message);
@@ -103,17 +101,6 @@ export default function TodoContainer() {
     // const filteredProducts = fetchedProducts.filter((item, index) => {
     //   return true;
     // });
-
-    const sortedTodos = data.records.sort((objectA, objectB) => {
-      if (sortOrder === "TITLE_ASC") {
-      } else if (sortOrder === "TITLE_DESC") {
-      }
-
-      if (isSortedAscending) {
-        return objectA.title.localeCompare(objectB.title);
-      } else return objectB.title.localeCompare(objectA.title);
-    });
-
     // return sortedProducts.map((product) => {
     //   return (
     //     <div key={product.id}>
@@ -132,6 +119,14 @@ export default function TodoContainer() {
     // setSortOrder("DATE_DESC");
   };
 
+  const sortedTodos = [...todoList].sort((objectA, objectB) => {
+    const titleA = objectA.title ?? "";
+    const titleB = objectB.title ?? "";
+    if (isSortedAscending) {
+      return titleA.localeCompare(titleB);
+    } else return titleB.localeCompare(titleA);
+  });
+
   return (
     <div className={styles.Container}>
       <h1 className={styles.MainHeader}>Todo List</h1>
@@ -142,7 +137,7 @@ export default function TodoContainer() {
       {isLoading ? (
         <p className={styles.Loading}>Loading...</p>
       ) : (
-        <TodoList todoList={todoList} removeTodo={removeTodo} />
+        <TodoList todoList={sortedTodos} removeTodo={removeTodo} />
       )}
     </div>
   );
