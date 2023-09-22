@@ -1,0 +1,14 @@
+ul {
+  width: 420px;
+  list-style: none;
+  margin: auto;
+  padding: 0;
+  color: var(--main-font-color);
+  display: flex;
+  flex-direction: column;
+  text-align: left !important ;
+}
+
+form {
+  font-size: 20px;
+}

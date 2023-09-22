@@ -24,18 +24,6 @@
   font-family: var(--main-font);
 }
 
-.FormInputField {
-  padding: 12px;
-  margin: 8px 8px 18px;
-  font-size: large;
-  background: var(--secondary-color);
-  border-radius: var(--border-radius);
-  font-family: var(--main-font);
-  border: 1px solid var(--background-color);
-  color: var(--main-font-color);
-  box-shadow: var(--box-shadow);
-}
-
 button {
   background-color: var(--secondary-color);
   font-family: var(--main-font);
@@ -54,29 +42,10 @@ button:hover {
   transition: var(--transition);
 }
 
-.ListItem {
-  padding: 10px;
-}
-
 body {
   background-color: #cde9ff;
   font-family: var(--main-font);
   color: var(--main-font-color);
-}
-
-ul {
-  width: 420px;
-  list-style: none;
-  margin: auto;
-  padding: 0;
-  color: var(--main-font-color);
-  display: flex;
-  flex-direction: column;
-  text-align: left !important ;
-}
-
-form {
-  font-size: 20px;
 }
 
 @media (max-width: 976px) {

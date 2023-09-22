@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styles from "../TodoListItem.module.css";
+import styles from "../styles/InputWithLabel.module.css";
 import PropTypes from "prop-types";
 
 export default function InputWithLabel(props) {

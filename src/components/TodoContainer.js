@@ -101,7 +101,7 @@ export default function TodoContainer() {
   return (
     <TodoView
       onAddTodo={addTodo}
-      onRemoveTodo={removeTodo}
+      removeTodo={removeTodo}
       isLoading={isLoading}
       isSortedAscending={isSortedAscending}
       sortedTodos={sortedTodos}
