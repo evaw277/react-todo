@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TodoList from "./TodoList";
-import AddTodoForm from "./AddTodoForm";
-import styles from "../TodoListItem.module.css";
+import TodoView from "./TodoView";
 
 export default function TodoContainer() {
   const [todoList, setTodoList] = useState([]);
@@ -81,6 +79,7 @@ export default function TodoContainer() {
       console.log(error.message);
     }
   };
+
   const removeTodo = (id) => {
     const removeItem = todoList.filter((todo) => todo.id !== id);
 
@@ -100,17 +99,13 @@ export default function TodoContainer() {
   });
 
   return (
-    <div className={styles.Container}>
-      <h1 className={styles.MainHeader}>Todo List</h1>
-      <button onClick={handleToggleSortDirection}>
-        {isSortedAscending ? "sort descending" : "sort ascending"}
-      </button>
-      <AddTodoForm onAddTodo={addTodo} />
-      {isLoading ? (
-        <p className={styles.Loading}>Loading...</p>
-      ) : (
-        <TodoList todoList={sortedTodos} removeTodo={removeTodo} />
-      )}
-    </div>
+    <TodoView
+      onAddTodo={addTodo}
+      onRemoveTodo={removeTodo}
+      isLoading={isLoading}
+      isSortedAscending={isSortedAscending}
+      sortedTodos={sortedTodos}
+      handleToggleSortDirection={handleToggleSortDirection}
+    />
   );
 }
