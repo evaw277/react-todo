@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import styles from "../TodoListItem.module.css";
-import PropTypes from "prop-types";
-import { sort } from "semver";
 
 export default function TodoContainer() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSortedAscending, setIsSortAscending] = useState(true);
-  const [sortedItems, setSortedItems] = useState([]);
 
   const fetchData = async () => {
     const options = {
@@ -19,13 +16,6 @@ export default function TodoContainer() {
       },
     };
 
-    const sortField = "sort[0][field]";
-    const sortDirection = "sort[0][direction]";
-
-    const encodedSortField = encodeURIComponent(sortField);
-    const encodedSortDirection = encodeURIComponent(sortDirection);
-
-    // const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?${encodedSortField}=title&${encodedSortDirection}=asc`;
     const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
     try {
       const response = await fetch(url, options);
@@ -97,26 +87,8 @@ export default function TodoContainer() {
     setTodoList(removeItem);
   };
 
-  function renderSortedTodos() {
-    // const filteredProducts = fetchedProducts.filter((item, index) => {
-    //   return true;
-    // });
-    // return sortedProducts.map((product) => {
-    //   return (
-    //     <div key={product.id}>
-    //       <h2>
-    //         {product.title} - {product.stock} in stock
-    //       </h2>
-    //       <h4>{product.category}</h4>
-    //       <p>{product.description}</p>
-    //     </div>
-    //   );
-    // });
-  }
-
   const handleToggleSortDirection = () => {
     setIsSortAscending(!isSortedAscending);
-    // setSortOrder("DATE_DESC");
   };
 
   const sortedTodos = [...todoList].sort((objectA, objectB) => {
@@ -142,7 +114,3 @@ export default function TodoContainer() {
     </div>
   );
 }
-
-TodoContainer.propTypes = {
-  props: PropTypes.func,
-};
