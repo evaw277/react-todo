@@ -80,10 +80,31 @@ export default function TodoContainer() {
     }
   };
 
-  const removeTodo = (id) => {
-    const removeItem = todoList.filter((todo) => todo.id !== id);
+  const removeTodo = async (id) => {
+    try {
+      const airtableData = {
+        fields: {
+          id: id,
+        },
+      };
+      const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+        },
+        body: JSON.stringify(airtableData),
+      };
 
-    setTodoList(removeItem);
+      const url = `
+https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
+
+      const response = await fetch(url, options);
+
+      setTodoList(todoList.filter((todo) => todo.id !== id));
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleToggleSortDirection = () => {
