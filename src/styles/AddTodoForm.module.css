@@ -6,7 +6,7 @@ ul {
   color: var(--main-font-color);
   display: flex;
   flex-direction: column;
-  text-align: left !important ;
+  text-align: left;
 }
 
 form {

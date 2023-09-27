@@ -100,6 +100,10 @@ export default function TodoContainer() {
 https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
 
       const response = await fetch(url, options);
+      if (!response.ok) {
+        const message = `Error: ${response.status}`;
+        throw new Error(message);
+      }
 
       setTodoList(todoList.filter((todo) => todo.id !== id));
     } catch (error) {
