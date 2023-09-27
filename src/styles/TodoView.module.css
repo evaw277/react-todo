@@ -1,11 +1,36 @@
 :root {
   --background-color: #cde9ff;
   --secondary-color: #e4f3ff;
+  --hover-color: #0065b3;
   --main-font: "Courier New", Courier, monospace;
   --main-font-color: #00335ad3;
   --transition: ease-in-out 125ms;
   --border-radius: 4px;
   --box-shadow: 0px 1px 1px;
+}
+
+button {
+  background-color: var(--secondary-color);
+  font-family: var(--main-font);
+  border: 1px solid black;
+  border-color: var(--background-color);
+  border-radius: var(--border-radius);
+  color: var(--main-font-color);
+  box-shadow: var(--box-shadow);
+  padding: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: var(--hover-color);
+  color: var(--background-color);
+  transition: var(--transition);
+}
+
+body {
+  background-color: #cde9ff;
+  font-family: var(--main-font);
+  color: var(--main-font-color);
 }
 
 .Container {
@@ -28,30 +53,6 @@
   margin: 10px;
 }
 
-button {
-  background-color: var(--secondary-color);
-  font-family: var(--main-font);
-  border: 1px solid black;
-  border-color: var(--background-color);
-  border-radius: var(--border-radius);
-  color: var(--main-font-color);
-  box-shadow: var(--box-shadow);
-  padding: 15px;
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: grey;
-  color: var(--background-color);
-  transition: var(--transition);
-}
-
-body {
-  background-color: #cde9ff;
-  font-family: var(--main-font);
-  color: var(--main-font-color);
-}
-
 @media (max-width: 976px) {
   .FormInputField {
     padding: 12px 0px;
@@ -62,9 +63,10 @@ body {
   .AddTodoFormButton {
     padding: 10px;
   }
+}
 
-  form {
-    font-size: 16px;
-    display: inline;
+@media (max-width: 600px) {
+  body {
+    font-size: 24px;
   }
 }
