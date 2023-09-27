@@ -1,0 +1,29 @@
+.LandingPage {
+  padding: 80px;
+  text-align: center;
+}
+.Landingh1 {
+  font-size: 70px;
+}
+.Landingh2 {
+  font-size: 40px;
+  margin-bottom: 60px;
+}
+.LandingLink {
+  font-size: 24px;
+  text-decoration: none;
+  color: var(--main-font-color);
+  background-color: var(--secondary-color);
+  font-family: var(--main-font);
+  border: 1px solid black;
+  border-color: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 15px;
+}
+.LandingLink:hover {
+  cursor: pointer;
+  background-color: var(--hover-color);
+  color: var(--background-color);
+  transition: var(--transition);
+}

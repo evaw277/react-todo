@@ -1,0 +1,11 @@
+.FormInputField {
+  padding: 12px;
+  margin: 8px 8px 18px;
+  font-size: large;
+  background: var(--secondary-color);
+  border-radius: var(--border-radius);
+  font-family: var(--main-font);
+  border: 1px solid var(--background-color);
+  color: var(--main-font-color);
+  box-shadow: var(--box-shadow);
+}
