@@ -1,3 +1,6 @@
 .ListItem {
   padding: 10px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
 }

@@ -13,7 +13,7 @@ export default function AddTodoForm({ onAddTodo }) {
   function handleAddTodo(event) {
     event.preventDefault();
     onAddTodo({
-      title: todoTitle,
+      title: todoTitle.trim(),
       id: Date.now(),
     });
     setTodoTitle("");

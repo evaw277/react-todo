@@ -1,5 +1,5 @@
 ul {
-  width: 420px;
+  max-width: 420px;
   list-style: none;
   margin: auto;
   padding: 0;
